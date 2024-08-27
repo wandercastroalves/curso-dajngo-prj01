@@ -16,22 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import include, path
 
-
-def home(request):
-    return HttpResponse('Home')
-
-def contato(request):
-    return HttpResponse('Contato')
-
-def sobre(request):
-    return HttpResponse('Sobre')
-
+from recipes.views import contato, home, sobre
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
-    path('contato/',contato),
-    path('sobre/',sobre),
+    path('',include('recipes.urls')),
+    
 ]
